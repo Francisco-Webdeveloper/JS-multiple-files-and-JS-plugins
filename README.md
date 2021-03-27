@@ -8,4 +8,5 @@ git clone git@github.com:andrerferrer/533-get-api.git get-api
 cd get-api
 yarn install
 stt # Open this folder in Sublime Text
+webpack-dev-server
 ```
