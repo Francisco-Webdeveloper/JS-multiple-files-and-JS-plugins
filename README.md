@@ -23,3 +23,65 @@ Once a file has been updated in Sublime (or any other text editor), you can run 
 ```bash
 node lib/01_types.js
 ```
+
+### Separate concerns
+
+Write functions in separate files
+
+**Export the function you call in src/index.js:**
+```bash
+// src/movies.js
+
+// [...]
+
+const fetchMovies = (query) => {
+  fetch(`http://www.omdbapi.com/?s=${query}&apikey=adf1f2d7`)
+    .then(response => response.json())
+    .then(insertMovies);
+};
+
+export { fetchMovies }; // <-- Add this line
+```
+**Import the function you call in src/index.js:**
+```bash
+// src/index.js
+import { fetchMovies } from './movies'; // <-- add this line
+
+fetchMovies('harry potter');
+
+const form = document.querySelector('#search-form');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  list.innerHTML = '';
+  const input = document.querySelector('#search-input');
+  fetchMovies(input.value);
+});
+```
+**Multiple exports**
+```bash
+// src/movies.js
+// [...]
+
+const updateResultsList = (event) => {
+  event.preventDefault();
+  list.innerHTML = '';
+  const input = document.querySelector('#search-input');
+  fetchMovies(input.value);
+}
+
+export { fetchMovies, updateResultsList }; // <-- separate functions with a coma
+```
+**Multiple imports**
+```bash
+// src/index.js
+import { fetchMovies, updateResultsList } from './movies';
+
+fetchMovies('harry potter');
+
+const form = document.querySelector('#search-form');
+form.addEventListener('submit', updateResultsList);
+```
+
+#### General Rules
+* Implement **functions** in separate files. **Export** them
+* Import **function** in the **entry file** and use it.
