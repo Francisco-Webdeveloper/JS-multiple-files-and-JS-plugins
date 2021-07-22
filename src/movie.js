@@ -14,7 +14,7 @@ const insertMovieToTheDOM = (title, poster) => {
 
 // STEP 2
 const fetchAPI = (movie) => {
-  const apiKey = "adf1f2d7";
+  const apiKey = config.MY_API_TOKEN;
   const url = `http://www.omdbapi.com/?s=${movie}&apikey=${apiKey}`;
   fetch(url)
     .then(response => response.json())
