@@ -26,7 +26,7 @@ node lib/01_types.js
 
 ### Separate concerns
 
-Write functions in separate files
+Write functions in separate files to separate code by responsibility. For example: movie.js will take functions only about movies.
 
 **Export the function you call in src/index.js:**
 ```bash
