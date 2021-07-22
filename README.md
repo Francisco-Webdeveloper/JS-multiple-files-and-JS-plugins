@@ -4,7 +4,7 @@ First clone this repository to your laptop. You must have Node (> v4) and [yarn]
 
 ```bash
 cd ~/code/<your_github_nickname>
-git clone git@github.com:Francisco-Webdeveloper/HTTP-AJAX-Demo.git my-js-project
+git clone git@github.com:Francisco-Webdeveloper/JS-multiple-files-and-JS-plugins-Demo.git
 cd my-js-project
 rm -rf .git
 yarn install
@@ -18,7 +18,7 @@ eslint lib
 webpack-dev-server
 ```
 
-Once a file has been updated in Sublime, you can run it with:
+Once a file has been updated in Sublime (or any other text editor), you can run it with:
 
 ```bash
 node lib/01_types.js
