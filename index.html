@@ -3,13 +3,24 @@
   <head>
     <link rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="node_modules/select2/dist/css/select2.css">
     <meta charset="UTF-8">
     <title>Playground - JavaScript 101</title>
   </head>
   <body>
     <div class="container text-center">
-      
+      <select class="select2" name="country">
+        <option value="AL">Alabama</option>
+        <option value="WY">Wyoming</option>
+        <option value="IL">Illinois</option>
+        <option value="WA">Washington</option>
+        <option value="AZ">Arizona</option>
+      </select>
+
+      <textarea class="form-control" id="editor" rows="4"></textarea>
+      <div id="preview"></div>
+
       <h1 class="text-center">Find your movies!</h1>
 
       <form id="search-movies" class="form-inline">
@@ -17,12 +28,13 @@
         <input type="submit" class="btn btn-primary mr-auto ml-2" value="Search">
       </form>
 
-      <ul id="results" class="list-inline">
+      <ul id="results" class="d-flex justify-content-between">
 
       </ul>
-      
+
     </div>
 
-    <script src="main.js"></script>
+<!--     Each script will require 1 http request, that is why we only have 1 file
+ -->    <script src="main.js"></script>
   </body>
 </html>
