@@ -85,3 +85,138 @@ form.addEventListener('submit', updateResultsList);
 #### General Rules
 * Implement **functions** in separate files. **Export** them
 * Import **function** in the **entry file** and use it.
+
+## Plugins
+
+### NPM
+It hosts many open source JavaScript libraries / packages.
+
+### Yarn
+Software used to download the JS packages
+
+**Addiing a new package**
+```bash
+yarn add <package>
+yarn add <package> [--dev].  <------ just for development reasons. Ex: Eslint
+```
+
+### First plugin: Sortable JS
+A plugin to drag-and-drop items in a list
+**Download package**
+```bash
+yarn add sortablejs
+```
+Open the **package.json**
+**Usage**
+```bash
+mkdir -p src/plugins
+touch src/plugins/init_sortable.js
+```
+```bash
+// src/plugins/init_sortable.js
+import Sortable from 'sortablejs';
+
+const initSortable = () => {
+  const list = document.querySelector('#results');
+  Sortable.create(list);
+};
+
+export { initSortable };
+```
+Call it from **index.js**
+```bash
+// src/index.js
+import { fetchMovies, updateResultsList } from './movies';
+import { initSortable } from './plugins/init_sortable'; // <-- add this
+
+fetchMovies('harry potter');
+initSortable(); // <-- add this
+
+const form = document.querySelector('#search-form');
+form.addEventListener('submit', updateResultsList);
+```
+**Add some style**
+```bash
+#results li {
+  cursor: grab;
+}
+
+#results li:active {
+  cursor: grabbing;
+}
+
+#results li.ghost {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+```
+**Adding options**
+```bash
+Sortable.create(list, {
+  ghostClass: "ghost",
+  animation: 150,
+  onEnd: (event) => {
+    alert(`${event.oldIndex} moved to ${event.newIndex}`);
+  }
+});
+```  
+
+### jQuery dependent plugins
+#### Understand jQuery syntax:
+```bash
+$('#submit').on('click', function(event) {
+  event.preventDefault();
+  $.ajax({
+    url: 'https://api.github.com/orgs/lewagon/repos',
+    success: function(data) {
+      // Do something with the response
+    }
+  });
+});
+```
+#### Write it the modern way
+```bash
+document.getElementById('submit').addEventListener('click', (event) => {
+  event.preventDefault();
+  fetch('https://api.github.com/orgs/lewagon/repos')
+    .then(response => response.json())
+    .then((data) => {
+      // Do something with the response
+    });
+});
+```
+### Second plugin: Select2
+```bash
+// imports
+import { fetchAPI, addMovieList } from './movie';
+import { initSortable } from './plugins/init_sortable';
+import { initMarkdown } from './plugins/init_markdown';
+import { initSelect2 } from './plugins/init_select2';
+
+// initialize plugins
+initSortable();
+initMarkdown();
+initSelect2();
+
+// listeners
+const form = document.querySelector('form#search-movies');
+// on this form we will add an event listener
+form.addEventListener('submit', addMovieList);
+
+// AJAX calls
+fetchAPI("Harry Potter");
+```
+
+```bash
+// imports
+import $ from 'jquery';
+import 'select2';
+
+// function definitions
+const initSelect2 = () => {
+  $('.select2').select2({ width: '320px' }); // (~ document.querySelectorAll)
+};
+
+// exports (~ public interface)
+export { initSelect2 };
+```
