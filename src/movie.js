@@ -6,7 +6,6 @@ const insertMovieToTheDOM = (title, poster) => {
   const movieHTML = `
     <li>
       <img src="${poster}" alt="" height="120">
-      <p>${title}</p>
     </li>
   `;
   results.insertAdjacentHTML('beforeend', movieHTML);

@@ -1,9 +1,9 @@
 
 // imports
-import { fetchAPI, addMovieList } from './movie'
-import { initSortable } from './plugins/init_sortable'
-import { initMarkdown } from './plugins/init_markdown'
-import { initSelect2 } from './plugins/init_select2'
+import { fetchAPI, addMovieList } from './movie';
+import { initSortable } from './plugins/init_sortable';
+import { initMarkdown } from './plugins/init_markdown';
+import { initSelect2 } from './plugins/init_select2';
 
 // initialize plugins
 initSortable();
