@@ -187,6 +187,9 @@ document.getElementById('submit').addEventListener('click', (event) => {
 ```
 ### Second plugin: Select2
 ```bash
+yarn add jquery select2
+```
+```bash
 // imports
 import { fetchAPI, addMovieList } from './movie';
 import { initSortable } from './plugins/init_sortable';
